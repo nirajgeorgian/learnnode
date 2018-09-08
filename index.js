@@ -1,10 +1,24 @@
 const express = require('express')
+const fs = require('fs')
+const path = require('path')
 const app = express()
 
+// middleware
+app.use(express.static('public'))
+
 app.get('/', (req, res) => {
-  res.send({
-    "hello": "World"
-  })
+  const dirname = path.resolve(__dirname, 'public')
+  console.log(dirname)
+  res.send(`
+    <html>
+      <head>
+        <link href="css/app.css" />
+      </head>
+      <body>
+        <h1>hello</h1>
+      </body>
+    </html>
+    `)
 })
 
 app.get('/dodo', (req, res) => {
